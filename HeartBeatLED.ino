@@ -22,6 +22,20 @@ const uint64_t HEART_SPRITE[] = {0x183c7effffffff66};
 const int HEART_SPRITE_LEN = sizeof(HEART_SPRITE)/8;
 const uint64_t HR_CHARS[] {0x00959555f7957500};
 const int HR_CHARS_LEN = sizeof(HR_CHARS)/8;
+const uint64_t HR_NUMBERS[] = {
+  0x1824242424242418,
+  0x0808080808080808,
+  0x3c0404043c20203c,
+  0x1c2020201c20201c,
+  0x2020203c24242424,
+  0x1c2020201c04043c,
+  0x182424241c040438,
+  0x101010101010223e,
+  0x1824242418242418,
+  0x1824202038242438
+};
+const int HR_NUMBERS_LEN = sizeof(HR_NUMBERS)/8;
+
 
 void setup() {
   // init all devices in a loop
