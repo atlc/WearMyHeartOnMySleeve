@@ -36,8 +36,15 @@ const uint64_t HR_NUMBERS[] = {
 };
 const int HR_NUMBERS_LEN = sizeof(HR_NUMBERS)/8;
 
+//int pulseSensor = A0;
+//double alpha = 0.75;
+//int period = 200;
+//double change = 0.0;
 
 void setup() {
+//  pinMode(LED_BUILTIN, OUTPUT);
+//  Serial.begin(9600);
+  
   // init all devices in a loop
   int devices=lc.getDeviceCount();
   for(int address=0;address<devices;address++) {
@@ -80,11 +87,32 @@ void showHRchars(uint64_t HR_CHARS) {
   }
 }
 
+void sampleNums(uint64_t HR_NUMBERS) {
+  for (int i = 0; i < 8; i++) {
+    byte row = (HR_NUMBERS >> i * 8) & 0xFF;
+    for (int j =0; j < 8; j++) {
+      lc.setLed(1, i, j, bitRead(row, j));
+    }
+  }
+  for (int i = 0; i < 8; i++) {
+    byte row = (HR_NUMBERS >> i * 8) & 0xFF;
+    for (int j =0; j < 8; j++) {
+      lc.setLed(2, i, j, bitRead(row, j));
+    }
+  }
+}
+
 int i = 0;
 
 void loop() {
+  
   showHRchars(HR_CHARS[i]);
   if (++i >= HR_CHARS_LEN) {
+    i = 0;
+  }
+
+  sampleNums(HR_NUMBERS[i]);
+  if (++i >= HR_NUMBERS_LEN) {
     i = 0;
   }
     
